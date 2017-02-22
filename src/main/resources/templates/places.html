@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <link type="text/css" rel="stylesheet" href="/static/css/style.css"
+            th:href="@{/css/style.css}"/>
+    <script src="/static/js/main.js"
+            th:href="@{/js/main.css}"></script>
+    <script src="https://code.jquery.com/jquery-1.10.2.js"
+            th:href="@{https://code.jquery.com/jquery-1.10.2.js}"></script>
+    <script src="https://api.mapbox.com/mapbox-gl-js/v0.23.0/mapbox-gl.js"
+            th:src="@{https://api.mapbox.com/mapbox-gl-js/v0.23.0/mapbox-gl.js}"></script>
+    <link href="https://api.mapbox.com/mapbox-gl-js/v0.23.0/mapbox-gl.css" rel="stylesheet"
+            th:href="@{https://api.mapbox.com/mapbox-gl-js/v0.23.0/mapbox-gl.css}"/>
+    <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no"/>
+    <script src="https://api.tiles.mapbox.com/mapbox-gl-js/v0.23.0/mapbox-gl.js"
+            th:src="@{https://api.tiles.mapbox.com/mapbox-gl-js/v0.23.0/mapbox-gl.js}"></script>
+    <link href="https://api.tiles.mapbox.com/mapbox-gl-js/v0.23.0/mapbox-gl.css" rel="stylesheet"
+            th:href="@{https://api.tiles.mapbox.com/mapbox-gl-js/v0.23.0/mapbox-gl.css}"/>
+
+    <title>Places</title>
+</head>
+<body>
+<div class="menu">
+    <ul>
+        <li><a class="active" href="places.html">Places</a></li>
+        <li><a href="family.html">Family</a></li>
+        <li><a href="books.html">Books</a></li>
+        <li><a href="music.html">Music</a></li>
+        <li><a href="technology.html">Technology</a></li>
+    </ul>
+</div>
+
+<div id="map">
+    <button id="fly">Fly Random</button>
+    <script>
+        mapboxgl.accessToken = 'pk.eyJ1IjoiaGFycnlzZW9uZyIsImEiOiJjaXQ4MW1uZzQwY3NhMm9wMWJmcDJkOTF0In0.0IESu9tlOZ2UCOO8Xqbl-g';
+        var map = new mapboxgl.Map({
+            container: 'map',
+            style: 'mapbox://styles/mapbox/dark-v9',
+            center: [-74.50, 40],
+            zoom: 9
+        });
+
+        document.getElementById('fly').addEventListener('click', function () {
+            // Fly to a random location by offsetting the point -74.50, 40
+            // by up to 5 degrees.
+            map.flyTo({
+                center: [
+                    -74.50 + (Math.random() - 0.5) * 10,
+                    40 + (Math.random() - 0.5) * 10]
+            });
+        });
+    </script>
+</div>
+
+<div class="content">
+    <p>"Such a lot of world to see..."</p>
+    <p>"We're after the same... rainbow's end..."</p>
+    <p></p>
+</div>
+
+</body>
+</html>

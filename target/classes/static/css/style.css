@@ -1,0 +1,93 @@
+@charset "UTF-8";
+/* CSS Document */
+
+html {
+    font-size: 62.5%; /* 1.0rem=10px */
+}
+
+body {
+    background-color: #fffaf0;
+}
+
+.menu {
+    font:2rem arial, sans-serif;
+    float:left;
+    margin:0;
+    padding:0;
+    opacity:.75;
+    z-index:0;
+}
+
+.menu ul {
+    list-style-type:none;
+    margin:0;
+    padding:0;
+    width:100%;
+}
+
+.menu li {
+    float:left;
+}
+
+.menu li a {
+    display:block;
+    color: #232323;
+    text-decoration:none;
+    #text-transform:uppercase;
+    text-align:center;
+    padding:0.5rem;
+    opacity:.90;
+    transition:0.33s;
+}
+
+.menu li a.active {
+    color:#0CECF0;
+    border-bottom: thick solid #0CECF0;
+}
+
+.menu li a:hover:not(.active)
+{
+    color:#0CECF0;
+    background: white;
+    border-bottom: thick solid #0CECF0;
+}
+
+.content {
+    font:3.0rem arial,sans-serif;
+    color: #232323;
+    top:10rem;
+    position: absolute;
+    opacity: 0.8;
+}
+
+#map {
+    position:absolute;
+    top:0;
+    bottom:0;
+    width:100%;
+    z-index:-1;
+}
+
+#map #fly {
+    display:block;
+    top:50rem;
+    position:relative;
+    margin:0px auto;
+    width:33%;
+    height:4rem;
+    padding:1rem;
+    border:none;
+    border-radius:0.3rem;
+    font-size:1.2rem;
+    text-align:center;
+    color:#4E4E4E;
+    background:#E1DA31;
+    opacity:0.75;
+    z-index: 1;
+}
+
+#word {
+    text-align:left;
+    position:relative;
+    font-size:8rem;
+}

@@ -1,0 +1,113 @@
+body {
+    margin: 0;
+    padding: 0;
+    background: #000;
+}
+
+video {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    min-width: 100%;
+    min-height: 100%;
+    width: auto;
+    height: auto;
+    z-index: -100;
+    transform: translateX(-50%) translateY(-50%);
+    background: url("../img/intro.jpg") no-repeat;
+    background-size: cover;
+    transition: 1s opacity;
+}
+.stopfade {
+    opacity: .5;
+}
+@media screen and (max-width: 500px) {
+    div {
+        width: 70%;
+    }
+}
+@media screen and (max-device-width: 800px) {
+    html {
+        background: url("../img/intro.jpg") #000 no-repeat center center fixed;
+    }
+    #bgvid {
+        display: none;
+    }
+}
+
+h1 {
+    font-size: 2rem;
+    text-transform: uppercase;
+    margin-top: 0;
+    letter-spacing: .3rem;
+}
+
+#typewriter {
+    font-family: "Arial Narrow", sans-serif;
+    font-weight: 100;
+    background: rgba(0, 0, 0, 0.3);
+    color: white;
+    padding: 2rem;
+    width: 33%;
+    margin: 2rem;
+    float: right;
+    font-size: 1.2rem;
+    opacity: .9;
+}
+
+#typewriter button {
+    display: block;
+    height: 2.4rem;
+    width: 7.0rem;
+    padding: .4rem;
+    border: none;
+    margin: 1rem auto;
+    text-transform: uppercase;
+    font-family: "Arial Narrow", sans-serif;
+    font-size: 0.8rem;
+    text-align: center;
+    text-decoration: none;
+    background: rgba(255, 255, 255, 0.23);
+    color: #fff;
+    border-radius: 0rem;
+    cursor: pointer;
+    transition: .33s background;
+}
+
+#typewriter button:hover {
+    background: rgba(0, 0, 0, 0.5);
+}
+
+#enter {
+    display: block;
+    height: 1.6rem;
+    width: 6.2rem;
+    padding: .4rem;
+    border: none;
+    margin: 1rem auto;
+    vertical-align: middle;
+    text-transform: uppercase;
+    font-size: 0.8rem;
+    text-align: center;
+    text-decoration: none;
+    background: rgba(255, 255, 255, 0.23);
+    color: #fff;
+    border-radius: 0rem;
+    transition: .33s background;
+}
+
+#enter:hover {
+    background: rgba(0, 0, 0, 0.5);
+}
+
+#footer {
+    position: fixed;
+    left: 50%;
+    right: 50%;
+    bottom: .3rem;
+    font-family: "Arial Narrow", sans-serif;
+    font-size: .3rem;
+    color: white;
+    opacity: .3;
+}
+

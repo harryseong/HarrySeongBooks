@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <link type="text/css" rel="stylesheet" href="/static/css/intro.css" th:href="@{/css/intro.css}"/>
+
+    <meta http-equiv="Content-Type" content="text/html" charset="UTF-8"/>
+    <title>Welcome</title>
+</head>
+
+<body>
+
+
+<video autoplay="autoplay" poster="/static/img/intro.jpg" th:poster="@{/img/intro.jpg}" id="bgvid">
+    <source src="/static/vid/intro.mp4" th:src="@{/vid/intro.mp4}" type="video/mp4"/>
+</video>
+
+
+<div id="typewriter">
+    <h1>welcome</h1>
+    <p th:text="'Hello, ' + ${name} +'!'" />
+    <p>The typewriter that you see here is a Remington Rand Deluxe Model 5, a model that was manufactured in the 1940's.</p>
+    <p>My relationship with technology is a necessary one, though one which continues to exist with a faint whisper of the hackneyed hyphenated adjective, "love-hate."</p>
+    <p>You are welcome to enter and peer about into the world of the man who sits on the proverbial fence regarding his relationship to the aforementioned necessity.</p>
+    <p>FYI... things are still kinda under construction.</p>
+    <button>Pause</button>
+    <a id="enter" th:href="@{/places}">Enter</a>
+</div>
+
+<div id="footer">
+    <p>harryseong.com</p>
+</div>
+
+<script type="text/javascript" th:src="@{/js/intro.js}"></script>
+
+</body>
+</html>
