@@ -2,18 +2,15 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 
 <head>
-    <link type="text/css" rel="stylesheet" href="/static/css/intro.css" th:href="@{/css/intro.css}"/>
-
+    <link type="text/css" rel="stylesheet" th:href="@{/css/intro.css}"/>
     <meta http-equiv="Content-Type" content="text/html" charset="UTF-8"/>
     <title>Welcome</title>
 </head>
 
 <body>
-
-
-<video autoplay="autoplay" poster="/static/img/intro.jpg" th:poster="@{/img/intro.jpg}" id="bgvid">
-    <source src="/static/vid/intro.mp4" th:src="@{/vid/intro.mp4}" type="video/mp4"/>
-</video>
+    <video autoplay="autoplay" th:poster="@{/img/intro.jpg}" id="bgvid">
+        <source th:src="@{/vid/intro.mp4}" type="video/mp4"/>
+    </video>
 
 
 <div id="typewriter">

@@ -23,4 +23,29 @@ public class HarryController {
         model.addAttribute("name", name);
         return "places";
     }
+    @RequestMapping("/family")
+    public String family(@RequestParam(value = "name", required =false, defaultValue = "World") String name, Model model)
+    {
+        model.addAttribute("name", name);
+        return "family";
+    }
+    @RequestMapping("/books")
+    public String books(@RequestParam(value = "name", required =false, defaultValue = "World") String name, Model model)
+    {
+        model.addAttribute("name", name);
+        return "books";
+    }
+    @RequestMapping("/music")
+    public String music(@RequestParam(value = "name", required =false, defaultValue = "World") String name, Model model)
+    {
+        model.addAttribute("name", name);
+        return "music";
+    }
+    @RequestMapping("/technology")
+    public String technology(@RequestParam(value = "name", required =false, defaultValue = "World") String name, Model model)
+    {
+        model.addAttribute("name", name);
+        return "technology";
+    }
+
 }
