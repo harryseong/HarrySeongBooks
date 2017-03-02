@@ -16,7 +16,7 @@ import com.harryseong.BookRepository;
 
 @Controller
 @RequestMapping(path="/demo")
-public class MainController {
+public class DBController {
     @Autowired
     private BookRepository bookRepository;
 

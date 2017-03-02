@@ -11,39 +11,45 @@ import javax.persistence.Id;
 
 @Entity
 public class Book {
+
     @Id
     @GeneratedValue(strategy=GenerationType.AUTO)
     private int bookID;
+
     private String title;
     private String authorFName;
     private String authorMName;
     private String authorLName;
-    //private String authorFullName; // only for quick reference
     private int numberOfPages;
     private String isbn13;
     private boolean readStatus;
 
-    /* Book constructor
-    public Book(String title, String authorFName, String authorMName,
+    // Protected no arg constructor needed for JPA
+    protected Book(){
+    }
+
+    // Constructor
+    public Book(int bookID, String title, String authorFName, String authorMName,
                 String authorLName, int numberOfPages, String isbn13,
                 boolean readStatus){
-        this.title=title;
-        this.authorFName=authorFName;
-        this.authorMName=authorMName;
-        this.authorLName=authorLName;
-        this.numberOfPages=numberOfPages;
-        this.isbn13=isbn13;
-        this.readStatus=readStatus;
-
-        // authorFullName based on absence/presence of authorMName
-        if(authorMName != null && !authorMName.isEmpty()){
-            this.authorFullName=authorFName+" "+authorMName+" "+authorLName;
-        }
-        else if(authorMName == null || authorMName.isEmpty()){
-            this.authorFullName=authorFName+" "+authorLName;
-        }
+        this.setBookID(bookID);
+        this.setTitle(title);
+        this.setAuthorFName(authorFName);
+        this.setAuthorMName(authorMName);
+        this.setAuthorLName(authorLName);
+        this.setNumberOfPages(numberOfPages);
+        this.setIsbn13(isbn13);
+        this.setReadStatus(readStatus);
     }
-    */
+
+    public Book(String title){
+        this.setTitle(title);
+    }
+
+    @Override
+    public String toString() {
+        return String.format("Book[id=%d, title='%s']", bookID, title);
+    }
 
     // Setters
     public void setBookID(int bookID){
@@ -75,14 +81,18 @@ public class Book {
     public int getBookID(){
         return bookID;
     }
+    public String getAuthorFName(){
+        return authorFName;
+    }
+    public String getAuthorMName(){
+        return authorMName;
+    }
+    public String getAuthorLName(){
+        return authorLName;
+    }
     public String getTitle(){
         return title;
     }
-    /*
-    public String getAuthorFullName(){
-        return authorFullName;
-    }
-    */
     public int getNumberOfPages(){
         return numberOfPages;
     }
