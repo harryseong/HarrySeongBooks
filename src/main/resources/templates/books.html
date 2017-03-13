@@ -4,8 +4,6 @@
 <head>
     <meta charset="UTF-8"/>
     <link type="text/css" rel="stylesheet" th:href="@{/css/style.css}"/>
-    <link rel="stylesheet" type="text/css" th:href="@{//cdn.datatables.net/1.10.13/css/jquery.dataTables.css}"/>
-    <script type="text/javascript" charset="utf8" th:src="@{//cdn.datatables.net/1.10.13/js/jquery.dataTables.js}"></script>
     <script th:src="@{/js/main.js}"></script>
     <script th:src="@{https://code.jquery.com/jquery-1.10.2.js}"></script>
     <title>Books</title>
@@ -23,6 +21,7 @@
 
 <div class="content">
     <p>"The early bird gets the book worm..."</p>
+    <p th:text="${bookID}" />
 
     <table id="bookTable" class="display">
         <thead>

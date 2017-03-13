@@ -1,4 +1,4 @@
-package com.harryseong;
+package com.harryseong.domain;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -14,7 +14,7 @@ public class Book {
 
     @Id
     @GeneratedValue(strategy=GenerationType.AUTO)
-    private int bookID;
+    private Long bookID;
 
     private String title;
     private String authorFName;
@@ -25,11 +25,11 @@ public class Book {
     private boolean readStatus;
 
     // Protected no arg constructor needed for JPA
-    protected Book(){
+    public Book(){
     }
 
     // Constructor
-    public Book(int bookID, String title, String authorFName, String authorMName,
+    public Book(Long bookID, String title, String authorFName, String authorMName,
                 String authorLName, int numberOfPages, String isbn13,
                 boolean readStatus){
         this.setBookID(bookID);
@@ -52,7 +52,7 @@ public class Book {
     }
 
     // Setters
-    public void setBookID(int bookID){
+    public void setBookID(Long bookID){
         this.bookID=bookID;
     }
     public void setTitle(String title){
@@ -78,7 +78,7 @@ public class Book {
     }
 
     // Getters
-    public int getBookID(){
+    public Long getBookID(){
         return bookID;
     }
     public String getAuthorFName(){

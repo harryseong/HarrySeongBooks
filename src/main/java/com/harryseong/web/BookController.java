@@ -1,5 +1,6 @@
-package com.harryseong;
+package com.harryseong.web;
 
+import com.harryseong.repository.BookRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -7,28 +8,29 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.harryseong.Book;
-import com.harryseong.BookRepository;
+import com.harryseong.domain.Book;
 
 /**
  * Created by harry on 2/24/17.
  */
 
 @Controller
-@RequestMapping(path="/demo")
-public class DBController {
+
+@RequestMapping(path="/books")
+public class BookController {
     @Autowired
     private BookRepository bookRepository;
 
     @GetMapping(path="/add")
-    public @ResponseBody String addNewBook(@RequestParam int bookID,
+    public @ResponseBody String addNewBook(@RequestParam Long bookID,
                                            @RequestParam String title,
                                            @RequestParam String authorFName,
                                            @RequestParam String authorMName,
                                            @RequestParam String authorLName,
                                            @RequestParam int numberOfPages,
                                            @RequestParam String isbn13,
-                                           @RequestParam boolean readStatus){
+                                           @RequestParam boolean readStatus)
+    {
         Book n=new Book();
         n.setBookID(bookID);
         n.setTitle(title);
