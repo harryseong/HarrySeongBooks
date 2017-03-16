@@ -3,47 +3,55 @@
 
 <head>
     <meta charset="UTF-8"/>
-    <link type="text/css" rel="stylesheet" th:href="@{/css/style.css}"/>
+    <link th:href="@{/css/main.css}" type="text/css" rel="stylesheet"/>
+    <link th:href="@{https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css}" type="text/css" rel="stylesheet"/>
+
     <script th:src="@{/js/main.js}"></script>
-    <script th:src="@{https://code.jquery.com/jquery-1.10.2.js}"></script>
+    <script th:src="@{https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js}"></script>
+
     <title>Books</title>
 </head>
 <body>
 <div class="menu">
     <ul>
-        <li><a th:href="@{places}">Places</a></li>
-        <li><a th:href="@{family}">Family</a></li>
-        <li><a th:href="@{books}" class="active">Books</a></li>
-        <li><a th:href="@{music}">Music</a></li>
-        <li><a th:href="@{technology}">Technology</a></li>
+        <li><a th:href="@{places}">places</a></li>
+        <li><a th:href="@{family}">family</a></li>
+        <li><a th:href="@{books}" class="active">books</a></li>
+        <li><a th:href="@{music}">music</a></li>
+        <li><a th:href="@{technology}">technology</a></li>
     </ul>
 </div>
 
 <div class="content">
-    <p>"The early bird gets the book worm..."</p>
-    <p th:text="${bookID}" />
-
-    <table id="bookTable" class="display">
+    <table id="bookTable" class="table table-striped">
         <thead>
         <tr>
-            <th>Column 1</th>
-            <th>Column 2</th>
+            <th>Book Cover</th>
+            <th>Book ID</th>
+            <th>Title</th>
+            <th>Author</th>
+            <th>Pages</th>
+            <th>ISBN13</th>
+            <th>Read Status</th>
         </tr>
         </thead>
         <tbody>
-        <tr>
-            <td>Row 1 Data 1</td>
-            <td>Row 1 Data 2</td>
-        </tr>
-        <tr>
-            <td>Row 2 Data 1</td>
-            <td>Row 2 Data 2</td>
+        <tr th:each="book : ${books}">
+            <td><img th:src="@{'http://covers.openlibrary.org/b/isbn/'+ ${book.isbn13}+'-S.jpg'}"/></td>
+            <td th:text="${book.bookID}"></td>
+            <td th:text="${book.title}"></td>
+            <td th:text="${book.authorName}"></td>
+            <td th:text="${book.numberOfPages}"></td>
+            <td th:text="${book.isbn13}"></td>
+            <td th:text="${book.readStatus}"></td>
         </tr>
         </tbody>
     </table>
 </div>
 
-
+<div id="footer">
+    <p>harryseong.com</p>
+</div>
 
 </body>
 </html>

@@ -3,39 +3,45 @@
 
 <head>
     <meta charset="UTF-8"/>
-    <link th:href="@{/css/style.css}" type="text/css" rel="stylesheet"/>
-    <script th:src="@{/js/main.css}"></script>
-    <script th:href="@{https://code.jquery.com/jquery-1.10.2.js}"></script>
-    <script th:src="@{https://api.mapbox.com/mapbox-gl-js/v0.23.0/mapbox-gl.js}"></script>
-    <link th:href="@{https://api.mapbox.com/mapbox-gl-js/v0.23.0/mapbox-gl.css}" rel="stylesheet"/>
-    <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no"/>
-    <script th:src="@{https://api.tiles.mapbox.com/mapbox-gl-js/v0.23.0/mapbox-gl.js}"></script>
-    <link th:href="@{https://api.tiles.mapbox.com/mapbox-gl-js/v0.23.0/mapbox-gl.css}" rel="stylesheet"/>
+
+    <link th:href="@{/css/main.css}" type="text/css" rel="stylesheet"/>
+    <link th:href="@{/css/map.css}" type="text/css" rel="stylesheet"/>
+    <link th:href="@{https://api.mapbox.com/mapbox-gl-js/v0.33.1/mapbox-gl.css}" rel="stylesheet"/>
+
+    <script th:src="@{/js/main.js}"></script>
+    <script th:src="@{/js/map.js}"></script>
+    <script th:src="@{https://api.mapbox.com/mapbox-gl-js/v0.33.1/mapbox-gl.js}"></script>
 
     <title>Places</title>
 </head>
 
 <body>
-<div class="menu">
-    <ul>
-        <li><a th:href="@{places}" class="active" >Places</a></li>
-        <li><a th:href="@{family}">Family</a></li>
-        <li><a th:href="@{books}">Books</a></li>
-        <li><a th:href="@{music}">Music</a></li>
-        <li><a th:href="@{technology}">Technology</a></li>
-    </ul>
-</div>
+    <div class="menu">
+        <ul>
+            <li><a th:href="@{places}" class="active" >places</a></li>
+            <li><a th:href="@{family}">family</a></li>
+            <li><a th:href="@{books}">books</a></li>
+            <li><a th:href="@{music}">music</a></li>
+            <li><a th:href="@{technology}">technology</a></li>
+        </ul>
+    </div>
 
-<div id="map">
-    <button id="fly">Fly Random</button>
-    <script th:src="@{/js/map.js}"></script>
-</div>
+    <div id="map"></div>
 
-<div class="content">
-    <p>"Such a lot of world to see..."</p>
-    <p>"We're after the same... rainbow's end..."</p>
-    <p></p>
-</div>
-
+    <div class="content">
+        <div id="infoBox">
+            <h1 id="cityName">Seoul, South Korea</h1>
+            <p id="cityDescription">[1991-1998] This was where Harry was born.</p>
+        </div>
+        <div id="flyButton">
+            <button id="fly">FLY TO 1ST-6TH GRADE</button>
+            <script th:src="@{/js/map.js}"></script>
+        </div>
+    </div>
 </body>
+
+<div id="footer">
+    <p>harryseong.com</p>
+</div>
+
 </html>

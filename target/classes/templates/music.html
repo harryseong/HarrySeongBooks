@@ -3,24 +3,30 @@
 
 <head>
     <meta charset="UTF-8"/>
-    <link type="text/css" rel="stylesheet" th:href="@{/css/style.css}"/>
+    <link th:href="@{/css/main.css}" type="text/css" rel="stylesheet"/>
     <script th:src="@{/js/main.js}"></script>
-    <script th:src="@{https://code.jquery.com/jquery-1.10.2.js}"></script>
+
     <title>Music</title>
 </head>
 <body>
 <div class="menu">
     <ul>
-        <li><a th:href="@{places}">Places</a></li>
-        <li><a th:href="@{family}">Family</a></li>
-        <li><a th:href="@{books}">Books</a></li>
-        <li><a th:href="@{music}" class="active">Music</a></li>
-        <li><a th:href="@{technology}">Technology</a></li>
+        <li><a th:href="@{places}">places</a></li>
+        <li><a th:href="@{family}">family</a></li>
+        <li><a th:href="@{books}">books</a></li>
+        <li><a th:href="@{music}" class="active">music</a></li>
+        <li><a th:href="@{technology}">technology</a></li>
     </ul>
 </div>
 
 <div class="content">
-    <p>"Music..."</p>
+    <div id="infoBox">
+        <h1>Music</h1>
+    </div>
+</div>
+
+<div id="footer">
+    <p>harryseong.com</p>
 </div>
 
 </body>

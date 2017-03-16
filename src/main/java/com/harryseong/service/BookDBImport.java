@@ -27,7 +27,7 @@ public class BookDBImport {
     @Autowired
     BookRepository bookRepository;
 
-    public void testDBImport() throws IOException {
+    public void initialBookDBImport() throws IOException {
         // save a couple of books via csv file
         File file = new File("/Users/harry/bookDatabase.csv");
         Scanner scanner = new Scanner(file);
@@ -43,6 +43,7 @@ public class BookDBImport {
             // While there's another book attribute left for the book in the csv file:
             while (dataScanner.hasNext()) {
                 String data = dataScanner.next();
+
                 if (index == 0) {
                     book.setBookID(Long.parseLong(data));
                 } else if (index == 1) {
@@ -61,6 +62,7 @@ public class BookDBImport {
                     book.setReadStatus(Boolean.parseBoolean(data));
                 }
                 index++;
+                book.setAuthorName();
                 bookRepository.save(book);
             }
             index = 0;
@@ -70,13 +72,10 @@ public class BookDBImport {
 
     @Bean
     public CommandLineRunner test() throws IOException {
-        testDBImport();
+
+        initialBookDBImport();
 
         return (args) -> {
-            // save a couple of books (for testing purposes)
-            // bookRepositoryOutput.save(new Book("Webster's Dictionary"));
-            // bookRepositoryOutput.save(new Book("Going the Second Mile"));
-
             // fetch all books
             log.info("Books found with findAll():");
             log.info("-------------------------------");

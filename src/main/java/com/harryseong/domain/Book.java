@@ -20,6 +20,7 @@ public class Book {
     private String authorFName;
     private String authorMName;
     private String authorLName;
+    private String authorName;
     private int numberOfPages;
     private String isbn13;
     private boolean readStatus;
@@ -48,7 +49,8 @@ public class Book {
 
     @Override
     public String toString() {
-        return String.format("Book[id=%d, title='%s']", bookID, title);
+        return String.format("["+getBookID()+", "+getTitle()+", "
+                +getAuthorName()+", "+getNumberOfPages()+", "+getIsbn13()+", "+getReadStatus()+"]");
     }
 
     // Setters
@@ -67,6 +69,17 @@ public class Book {
     public void setAuthorLName(String authorLName){
         this.authorLName=authorLName;
     }
+    public void setAuthorName(){
+        if(this.authorMName==null && this.authorLName==null){
+            this.authorName=this.authorFName;
+        }
+        else if(this.authorMName==null && this.authorLName!=null){
+            this.authorName=this.authorFName+" "+this.authorLName;
+        }
+        else{
+            this.authorName=this.authorFName+" "+this.authorMName+" "+this.authorLName;
+        }
+    }
     public void setNumberOfPages(int numberOfPages){
         this.numberOfPages=numberOfPages;
     }
@@ -78,8 +91,8 @@ public class Book {
     }
 
     // Getters
-    public Long getBookID(){
-        return bookID;
+    public String getBookID(){
+        return String.format(String.valueOf(bookID));
     }
     public String getAuthorFName(){
         return authorFName;
@@ -90,16 +103,17 @@ public class Book {
     public String getAuthorLName(){
         return authorLName;
     }
+    public String getAuthorName() { return authorName; }
     public String getTitle(){
         return title;
     }
-    public int getNumberOfPages(){
-        return numberOfPages;
+    public String getNumberOfPages(){
+        return String.valueOf(numberOfPages);
     }
     public String getIsbn13(){
         return isbn13;
     }
-    public boolean getReadStatus(){
-        return readStatus;
+    public String getReadStatus(){
+        return String.valueOf(readStatus);
     }
 }

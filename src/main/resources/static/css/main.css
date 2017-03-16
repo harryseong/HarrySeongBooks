@@ -1,0 +1,111 @@
+@charset "UTF-8";
+
+html {
+    font-size: 62.5%; /* 1.0rem=10px */
+}
+
+body {
+    padding:0;
+    margin:0;
+    width: 100%;
+    background-color: #333333;
+}
+
+h1 {
+    font-family: "Arial Narrow", sans-serif;
+    font-size: 2rem;
+    text-transform: uppercase;
+    margin-top: 0;
+    letter-spacing: .3rem;
+}
+
+.menu {
+    position:fixed;
+    top:0;
+    margin:0;
+    padding:0;
+    font:1.75rem arial, sans-serif;
+    width: 100%;
+    float:left;
+    background: #ffffff;
+    opacity:.90;
+    z-index:1;
+}
+
+.menu ul {
+    list-style-type:none;
+    margin:0;
+    padding:0;
+    width:100%;
+}
+
+.menu li {
+    float:left;
+}
+
+.menu li a {
+    display:block;
+    color: #232323;
+    text-decoration:none;
+    text-transform:lowercase;
+    text-align:center;
+    padding:0.5rem;
+    opacity:.90;
+    transition:0.33s;
+}
+
+.menu li a.active {
+    color:#0CECF0;
+    border-bottom: thick solid #0CECF0;
+}
+
+.menu li a:hover:not(.active) {
+    color:#0CECF0;
+    background: #ffffff;
+    border-bottom: thick solid #0CECF0;
+}
+
+.content {
+    position: absolute;
+    width:100%;
+    margin: 2rem;
+    padding: 0rem;
+    top: 5rem;
+    bottom:0;
+    font:1.0rem arial,sans-serif;
+    color: #232323;
+    z-index:0;
+}
+
+#infoBox {
+    position: fixed;
+    display: block;
+    width: 35rem;
+    top: 10rem;
+    right: 5rem;
+
+    background: #ffffff;
+    padding: 2rem;
+    margin: 0rem;
+    font-family: "Arial Narrow", sans-serif;
+    font-size: 1.5rem;
+    font-weight: 100;
+
+    color: #232323;
+
+    border-radius: 0.1rem;
+
+    opacity: 0.80;
+    z-index: 1;
+}
+
+#footer {
+    position: fixed;
+    left: 50%;
+    right: 50%;
+    bottom: .3rem;
+    font-family: "Arial Narrow", sans-serif;
+    font-size: 1.25rem;
+    color: white;
+    opacity: .3;
+}

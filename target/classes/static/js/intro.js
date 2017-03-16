@@ -8,7 +8,7 @@ function vidFade() {
     video.classList.add("stopfade");
 }
 
-video.addEventListener('ended', function() {
+video.addEventListener("ended", function() {
     video.pause();
     pauseButton.innerHTML = "Replay";
     // to capture IE10
