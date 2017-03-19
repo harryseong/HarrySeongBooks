@@ -4,7 +4,7 @@
 <head>
     <link type="text/css" rel="stylesheet" th:href="@{/css/typewriter.css}"/>
     <link type="text/css" rel="stylesheet" th:href="@{/css/main.css}"/>
-    <script type="text/javascript" th:src="@{/js/intro.js}"></script>
+    <script type="text/javascript" th:src="@{/js/typewriter.js}"></script>
     <meta http-equiv="Content-Type" content="text/html" charset="UTF-8"/>
     <title>Welcome</title>
 </head>
@@ -13,8 +13,6 @@
     <video autoplay="autoplay" th:poster="@{/img/intro.jpg}" id="bgvid">
         <source th:src="@{/vid/intro.mp4}" type="video/mp4"/>
     </video>
-
-
 <div id="typewriter">
     <h1>welcome</h1>
     <p th:text="'Hello, ' + ${name} +'!'" />
@@ -23,7 +21,7 @@
     <p>You are welcome to enter and peer about into the world of the man who sits on the proverbial fence regarding his relationship to the aforementioned necessity.</p>
 
     <button>Pause</button>
-    <script type="text/javascript" th:src="@{/js/intro.js}"></script>
+    <script type="text/javascript" th:src="@{/js/typewriter.js}"></script>
     <a id="enter" th:href="@{/places}">Enter</a>
 </div>
 

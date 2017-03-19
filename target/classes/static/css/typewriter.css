@@ -1,3 +1,5 @@
+@import url(http://fonts.googleapis.com/css?family=Roboto:400,300,100);
+
 video {
     position: fixed;
     top: 50%;
@@ -30,22 +32,19 @@ video {
 }
 
 #typewriter {
-    font-family: "Arial Narrow", sans-serif;
-    font-weight: 100;
     background: rgba(0, 0, 0, 0.3);
     color: white;
-    padding: 2rem;
-    width: 33%;
-    margin: 2rem;
+    padding: 4rem;
+    width: 25%;
+    margin: 4rem;
     float: right;
-    font-size: 1.75rem;
+    font-size: 1.5rem;
     opacity: .9;
     border-radius: 0.1rem;
 }
 
 #typewriter h1 {
-    font-family: "Arial Narrow", sans-serif;
-    font-size: 4rem;
+    font-size: 3rem;
     text-transform: uppercase;
     margin-top: 0;
     letter-spacing: .3rem;
@@ -59,8 +58,7 @@ video {
     border: none;
     margin: auto;
     text-transform: uppercase;
-    font-family: "Arial Narrow", sans-serif;
-    font-size: 1.75rem;
+    font-size: 1.25rem;
     text-align: center;
     text-decoration: none;
     background: rgba(255, 255, 255, 0.23);
@@ -76,15 +74,15 @@ video {
 
 #enter {
     display: block;
-    height: 2.25rem;
-    width: 8.10rem;
+    height: 2.0rem;
+    width: 8.0rem;
     padding: 1.0rem;
     border: none;
-    margin: 2.0rem auto;
+    margin: auto;
+    margin-top: 2rem;
     line-height: 1.8rem;
-    font-family: "Arial Narrow", sans-serif;
     text-transform: uppercase;
-    font-size: 1.75rem;
+    font-size: 1.25rem;
     text-align: center;
     text-decoration: none;
     background: rgba(255, 255, 255, 0.23);

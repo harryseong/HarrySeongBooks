@@ -6,6 +6,7 @@
 
     <link th:href="@{/css/main.css}" type="text/css" rel="stylesheet"/>
     <link th:href="@{/css/map.css}" type="text/css" rel="stylesheet"/>
+    <link th:href="@{css/font-awesome-4.7.0/css/font-awesome.min.css}" rel="stylesheet"/>
     <link th:href="@{https://api.mapbox.com/mapbox-gl-js/v0.33.1/mapbox-gl.css}" rel="stylesheet"/>
 
     <script th:src="@{/js/main.js}"></script>
@@ -29,12 +30,18 @@
     <div id="map"></div>
 
     <div class="content">
-        <div id="infoBox">
+        <div class="infoBoxHead">
             <h1 id="cityName">Seoul, South Korea</h1>
-            <p id="cityDescription">[1991-1998] This was where Harry was born.</p>
+        </div>
+        <div class="infoBoxBody">
+            <p id="cityYears">[1991-1998]</p>
+            <p id="cityDescription">This was where Harry was born.</p>
         </div>
         <div id="flyButton">
-            <button id="fly">FLY TO 1ST-6TH GRADE</button>
+            <button id="fly">
+                <i class="fa fa-plane" aria-hidden="true"></i>
+                <span id="flyButtonText">FLY TO 1ST-6TH GRADE</span>
+            </button>
             <script th:src="@{/js/map.js}"></script>
         </div>
     </div>

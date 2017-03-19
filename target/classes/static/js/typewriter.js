@@ -25,7 +25,3 @@ pauseButton.addEventListener("click", function() {
         pauseButton.innerHTML = "Resume";
     }
 })
-
-$('.play-button').click(function() {
-    $(this).toggleClass("paused");
-});
