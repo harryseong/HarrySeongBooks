@@ -21,7 +21,7 @@ var map = new mapboxgl.Map({
 var fly = document.getElementById("flyButtonText");
 
 flyButton.addEventListener('click', function () {
-    if (flyButtonText.innerHTML == "FLY TO 1ST-6TH GRADE"){
+    if (fly.innerHTML == "FLY TO 1ST-6TH GRADE"){
         map.flyTo({center: collegeStation, zoom: 10});
         fly.innerHTML = "FLY TO 6TH-8TH GRADE";
         cityName.innerHTML = "College Station, TX";

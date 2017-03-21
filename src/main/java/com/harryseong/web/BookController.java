@@ -30,14 +30,15 @@ public class BookController {
     }
 
     @GetMapping(path="/add")
-    public @ResponseBody String addNewBook(@RequestParam Long bookID,
-                                           @RequestParam String title,
-                                           @RequestParam String authorFName,
-                                           @RequestParam String authorMName,
-                                           @RequestParam String authorLName,
-                                           @RequestParam int numberOfPages,
-                                           @RequestParam String isbn13,
-                                           @RequestParam boolean readStatus)
+    @ResponseBody
+    public String addNewBook(@RequestParam Long bookID,
+                             @RequestParam String title,
+                             @RequestParam String authorFName,
+                             @RequestParam String authorMName,
+                             @RequestParam String authorLName,
+                             @RequestParam int numberOfPages,
+                             @RequestParam String isbn13,
+                             @RequestParam boolean readStatus)
     {
         Book n=new Book();
         n.setBookID(bookID);
@@ -54,7 +55,8 @@ public class BookController {
     }
 
     @GetMapping(path="/all")
-    public @ResponseBody Iterable<Book> getAllBooks(){
+    @ResponseBody
+    public Iterable<Book> getAllBooks(){
         return bookRepository.findAll();
     }
 }
