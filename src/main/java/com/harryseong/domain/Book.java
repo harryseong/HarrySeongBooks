@@ -15,42 +15,26 @@ public class Book {
     @Id
     @GeneratedValue(strategy=GenerationType.AUTO)
     private Long bookID;
-
     private String title;
-    private String authorFName;
-    private String authorMName;
-    private String authorLName;
     private String authorName;
-    private int numberOfPages;
+    private String description;
+    private int pageCount;
     private String isbn13;
     private boolean readStatus;
+    private String coverImageURL;
 
-    // Protected no arg constructor needed for JPA
+    // No arg constructor needed for JPA
     public Book(){
     }
 
     // Constructor
-    public Book(Long bookID, String title, String authorFName, String authorMName,
-                String authorLName, int numberOfPages, String isbn13,
+    public Book(String title, String authorName, int pageCount, String isbn13,
                 boolean readStatus){
-        this.setBookID(bookID);
         this.setTitle(title);
-        this.setAuthorFName(authorFName);
-        this.setAuthorMName(authorMName);
-        this.setAuthorLName(authorLName);
-        this.setNumberOfPages(numberOfPages);
+        this.setAuthorName(authorName);
+        this.setPageCount(pageCount);
         this.setIsbn13(isbn13);
         this.setReadStatus(readStatus);
-    }
-
-    public Book(String title){
-        this.setTitle(title);
-    }
-
-    @Override
-    public String toString() {
-        return String.format("["+getBookID()+", "+getTitle()+", "
-                +getAuthorName()+", "+getNumberOfPages()+", "+getIsbn13()+", "+getReadStatus()+"]");
     }
 
     // Setters
@@ -60,60 +44,46 @@ public class Book {
     public void setTitle(String title){
         this.title=title;
     }
-    public void setAuthorFName(String authorFName){
-        this.authorFName=authorFName;
+    public void setAuthorName(String authorName){
+        this.authorName=authorName;
     }
-    public void setAuthorMName(String authorMName){
-        this.authorMName=authorMName;
+    public void setDescription(String description){
+        this.description=description;
     }
-    public void setAuthorLName(String authorLName){
-        this.authorLName=authorLName;
-    }
-    public void setAuthorName(){
-        if(this.authorMName==null && this.authorLName==null){
-            this.authorName=this.authorFName;
-        }
-        else if(this.authorMName==null && this.authorLName!=null){
-            this.authorName=this.authorFName+" "+this.authorLName;
-        }
-        else{
-            this.authorName=this.authorFName+" "+this.authorMName+" "+this.authorLName;
-        }
-    }
-    public void setNumberOfPages(int numberOfPages){
-        this.numberOfPages=numberOfPages;
-    }
+    public void setPageCount(int pageCount){ this.pageCount = pageCount; }
     public void setIsbn13(String isbn13){
         this.isbn13=isbn13;
     }
     public void setReadStatus(boolean readStatus){
         this.readStatus=readStatus;
     }
+    public void setCoverImageURL(String coverImageURL) { this.coverImageURL=coverImageURL; }
 
     // Getters
     public String getBookID(){
         return String.format(String.valueOf(bookID));
     }
-    public String getAuthorFName(){
-        return authorFName;
-    }
-    public String getAuthorMName(){
-        return authorMName;
-    }
-    public String getAuthorLName(){
-        return authorLName;
-    }
     public String getAuthorName() { return authorName; }
     public String getTitle(){
         return title;
     }
-    public String getNumberOfPages(){
-        return String.valueOf(numberOfPages);
+    public String getDescription() { return description; }
+    public String getPageCount(){
+        return String.valueOf(pageCount);
     }
     public String getIsbn13(){
         return isbn13;
     }
     public String getReadStatus(){
         return String.valueOf(readStatus);
+    }
+    public String getCoverImageURL(){
+        return coverImageURL;
+    }
+
+    @Override
+    public String toString() {
+        return String.format("["+getBookID()+", "+getTitle()+", "
+                +getAuthorName()+", "+ getPageCount()+", "+getIsbn13()+", "+getReadStatus()+", "+getCoverImageURL()+"]");
     }
 }

@@ -33,9 +33,7 @@ public class BookController {
     @ResponseBody
     public String addNewBook(@RequestParam Long bookID,
                              @RequestParam String title,
-                             @RequestParam String authorFName,
-                             @RequestParam String authorMName,
-                             @RequestParam String authorLName,
+                             @RequestParam String authorName,
                              @RequestParam int numberOfPages,
                              @RequestParam String isbn13,
                              @RequestParam boolean readStatus)
@@ -43,11 +41,8 @@ public class BookController {
         Book n=new Book();
         n.setBookID(bookID);
         n.setTitle(title);
-        n.setAuthorFName(authorFName);
-        n.setAuthorMName(authorMName);
-        n.setAuthorLName(authorLName);
-        n.setAuthorName();
-        n.setNumberOfPages(numberOfPages);
+        n.setAuthorName(authorName);
+        n.setPageCount(numberOfPages);
         n.setIsbn13(isbn13);
         n.setReadStatus(readStatus);
         bookRepository.save(n);

@@ -30,6 +30,7 @@
             <th>Book ID</th>
             <th>Title</th>
             <th>Author</th>
+            <th>Description</th>
             <th>Pages</th>
             <th>ISBN13</th>
             <th>Read Status</th>
@@ -37,11 +38,12 @@
         </thead>
         <tbody>
         <tr th:each="book : ${books}">
-            <td><img th:src="@{'http://covers.openlibrary.org/b/isbn/'+ ${book.isbn13}+'-S.jpg'}"/></td>
+            <td><img th:src="${book.coverImageURL}"/></td>
             <td th:text="${book.bookID}"></td>
             <td th:text="${book.title}"></td>
             <td th:text="${book.authorName}"></td>
-            <td th:text="${book.numberOfPages}"></td>
+            <td th:text="${book.description}"></td>
+            <td th:text="${book.pageCount}"></td>
             <td th:text="${book.isbn13}"></td>
             <td th:text="${book.readStatus}"></td>
         </tr>
