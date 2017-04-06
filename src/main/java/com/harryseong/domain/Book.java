@@ -27,14 +27,10 @@ public class Book {
     public Book(){
     }
 
-    // Constructor
-    public Book(String title, String authorName, int pageCount, String isbn13,
-                boolean readStatus){
-        this.setTitle(title);
-        this.setAuthorName(authorName);
-        this.setPageCount(pageCount);
-        this.setIsbn13(isbn13);
-        this.setReadStatus(readStatus);
+    // Constructor for adding new book
+    public Book(String isbn13, boolean readStatus){
+        setIsbn13(isbn13);
+        setReadStatus(readStatus);
     }
 
     // Setters
@@ -63,16 +59,16 @@ public class Book {
     public String getBookID(){
         return String.format(String.valueOf(bookID));
     }
-    public String getAuthorName() { return authorName; }
     public String getTitle(){
         return title;
     }
+    public String getAuthorName() { return authorName; }
     public String getDescription() { return description; }
     public String getPageCount(){
         return String.valueOf(pageCount);
     }
     public String getIsbn13(){
-        return isbn13;
+        return (isbn13);
     }
     public String getReadStatus(){
         return String.valueOf(readStatus);
