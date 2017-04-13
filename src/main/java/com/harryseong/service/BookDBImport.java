@@ -73,15 +73,15 @@ public class BookDBImport {
 
     public Book parseBookJson(Book book, String isbn13) throws IOException {
         // [Test 1] Locally stored sample JSON
-        byte[] bookJsonString = Files.readAllBytes(Paths.get("/Users/harry/downloads/bookJsonFile.txt"));
+        //byte[] bookJsonString = Files.readAllBytes(Paths.get("/Users/harry/downloads/bookJsonFile2.txt"));
 
         // [Test 2] Google Books API + fixed ISBN number
         // JSONObject bookJsonObject = new JSONObject(IOUtils.toString(new URL("https://www.googleapis.com/books/v1/volumes?q=isbn:9780399588174"), Charset.forName("UTF-8")));
         // String bookJsonString = bookJsonObject.toString();
 
         // [Test 3] Google Books API + database-stored ISBN numbers
-        // JSONObject bookJsonObject = new JSONObject(IOUtils.toString(new URL("https://www.googleapis.com/books/v1/volumes?q=isbn:"+isbn13), Charset.forName("UTF-8")));
-        // String bookJsonString = bookJsonObject.toString();
+        JSONObject bookJsonObject = new JSONObject(IOUtils.toString(new URL("https://www.googleapis.com/books/v1/volumes?q=isbn:"+isbn13), Charset.forName("UTF-8")));
+        String bookJsonString = bookJsonObject.toString();
 
         ObjectMapper objectMapper = new ObjectMapper();
         log.info(isbn13);
@@ -89,26 +89,49 @@ public class BookDBImport {
 
         try {
             JsonNode rootNode = objectMapper.readValue(bookJsonString, JsonNode.class);
-            JsonNode itemsArray = rootNode.get("items");  // check if null, if null, skip rest and print out ot log
-                                                                // total items=0
-            JsonNode itemsNode = itemsArray.get(0);
-            JsonNode volumeInfoNode = itemsNode.get("volumeInfo");
-            JsonNode titleNode = volumeInfoNode.get("title");
-            JsonNode authorsArray = volumeInfoNode.get("authors");
-            JsonNode authorNode = authorsArray.get(0);
-            JsonNode descriptionNode = volumeInfoNode.get("description");
-            JsonNode pageCountNode = volumeInfoNode.get("pageCount");
-            JsonNode imageLinksNode = volumeInfoNode.get("imageLinks");
-            JsonNode thumbnailNode = imageLinksNode.get("thumbnail");
-            JsonNode smallThumbnailNode = imageLinksNode.get("smallThumbnail");
 
-            book.setTitle(titleNode.asText());
-            book.setAuthorName(authorNode.asText());
-            // Book description import is failing because descriptions are too long for database.
-            // book.setDescription(descriptionNode.asText());
-            book.setDescription("This is a sample description.");
-            book.setPageCount(pageCountNode.asInt());
-            book.setCoverImageURL(smallThumbnailNode.asText());
+            // check if null, if null, skip rest and print out to log
+            JsonNode totalItemsNode = rootNode.get("totalItems");
+            int totalItems = totalItemsNode.asInt();
+
+            if (totalItems > 0) {
+                JsonNode itemsArray = rootNode.get("items");
+                JsonNode itemsNode = itemsArray.get(0);
+                JsonNode volumeInfoNode = itemsNode.get("volumeInfo");
+                JsonNode titleNode = volumeInfoNode.get("title");
+
+                if (volumeInfoNode.has("authors")){
+                    JsonNode authorsArray = volumeInfoNode.get("authors");
+                    JsonNode authorNode = authorsArray.get(0);
+                    book.setAuthorName(authorNode.asText());
+                }
+                else {
+                    log.info("No authors for book with ISBN-13 number, "+isbn13+", this book.");
+                    book.setAuthorName("N/A");
+                }
+
+                JsonNode descriptionNode = volumeInfoNode.get("description");
+                JsonNode pageCountNode = volumeInfoNode.get("pageCount");
+
+                if (volumeInfoNode.has("imageLinks")){
+                    JsonNode imageLinksNode = volumeInfoNode.get("imageLinks");
+                    JsonNode thumbnailNode = imageLinksNode.get("thumbnail");
+                    JsonNode smallThumbnailNode = imageLinksNode.get("smallThumbnail");
+                    book.setCoverImageURL(smallThumbnailNode.asText());
+                }
+                else {
+                    log.info("No imageLinks available for book with ISBN-13 number, "+isbn13+", this book.");
+                }
+
+                book.setTitle(titleNode.asText());
+                // Book description import is failing because descriptions are too long for database.
+                // book.setDescription(descriptionNode.asText());
+                book.setDescription("This is a sample description.");
+                book.setPageCount(pageCountNode.asInt());
+            }
+            else if (totalItems == 0) {
+                log.info("The book associated with the ISBN-13 number, "+isbn13+", is not found on the Google Books API.");
+            }
         } catch (IOException e) {
             e.printStackTrace();
         }
