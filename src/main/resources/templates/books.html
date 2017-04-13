@@ -54,8 +54,8 @@
     <table id="bookTable" class="table table-striped">
         <thead>
         <tr>
-            <th>Book Cover</th>
             <th>Book ID</th>
+            <th>Book Cover</th>
             <th>Title</th>
             <th>Author</th>
             <th>Description</th>
@@ -66,8 +66,8 @@
         </thead>
         <tbody>
         <tr th:each="book : ${books}">
-            <td><img th:src="${book.coverImageURL}"/></td>
             <td th:text="${book.bookID}"></td>
+            <td><img th:src="${book.coverImageURL}"/></td>
             <td th:text="${book.title}"></td>
             <td th:text="${book.authorName}"></td>
             <td th:text="${book.description}"></td>

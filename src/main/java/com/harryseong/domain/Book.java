@@ -1,9 +1,6 @@
 package com.harryseong.domain;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 /**
  * Created by harry on 2/24/17.
@@ -17,6 +14,7 @@ public class Book {
     private Long bookID;
     private String title;
     private String authorName;
+    @Column(length = 5000)
     private String description;
     private int pageCount;
     private String isbn13;
@@ -80,6 +78,6 @@ public class Book {
     @Override
     public String toString() {
         return String.format("["+getBookID()+", "+getTitle()+", "
-                +getAuthorName()+", "+ getPageCount()+", "+getIsbn13()+", "+getReadStatus()+", "+getCoverImageURL()+"]");
+                +getAuthorName()+", "+ getPageCount()+", "+getIsbn13()+", "+getReadStatus()+", "+getCoverImageURL()+", "+getDescription()+"]");
     }
 }

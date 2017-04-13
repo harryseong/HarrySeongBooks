@@ -98,7 +98,9 @@ public class BookDBImport {
                 JsonNode itemsArray = rootNode.get("items");
                 JsonNode itemsNode = itemsArray.get(0);
                 JsonNode volumeInfoNode = itemsNode.get("volumeInfo");
+
                 JsonNode titleNode = volumeInfoNode.get("title");
+                book.setTitle(titleNode.asText());
 
                 if (volumeInfoNode.has("authors")){
                     JsonNode authorsArray = volumeInfoNode.get("authors");
@@ -110,8 +112,8 @@ public class BookDBImport {
                     book.setAuthorName("N/A");
                 }
 
-                JsonNode descriptionNode = volumeInfoNode.get("description");
                 JsonNode pageCountNode = volumeInfoNode.get("pageCount");
+                book.setPageCount(pageCountNode.asInt());
 
                 if (volumeInfoNode.has("imageLinks")){
                     JsonNode imageLinksNode = volumeInfoNode.get("imageLinks");
@@ -123,11 +125,17 @@ public class BookDBImport {
                     log.info("No imageLinks available for book with ISBN-13 number, "+isbn13+", this book.");
                 }
 
-                book.setTitle(titleNode.asText());
-                // Book description import is failing because descriptions are too long for database.
-                // book.setDescription(descriptionNode.asText());
-                book.setDescription("This is a sample description.");
-                book.setPageCount(pageCountNode.asInt());
+                if (volumeInfoNode.has("description")){
+                    // Book description import is failing because descriptions are too long for database.
+                    JsonNode descriptionNode = volumeInfoNode.get("description");
+                    log.info(descriptionNode.asText());
+                    book.setDescription(descriptionNode.asText());
+                    //book.setDescription("This is a sample description.");
+                }
+                else {
+                    log.info("No description available for book with ISBN-13 number, "+isbn13+", this book.");
+                }
+
             }
             else if (totalItems == 0) {
                 log.info("The book associated with the ISBN-13 number, "+isbn13+", is not found on the Google Books API.");
