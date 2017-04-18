@@ -13,8 +13,6 @@ import java.util.List;
 @Repository
 public interface BookRepository extends CrudRepository<Book, Long> {
     List<Book> findByTitle(String title);
-    List<Book> findByAuthorFName(String authorFName);
-    List<Book> findByAuthorMName(String authorMName);
-    List<Book> findByAuthorLName(String authorLName);
-    List<Book> findByIsbn13(String isbn13);
+    List<Book> findByAuthorName(String authorFName);
+    Book findByIsbn13(String isbn13);
 }
