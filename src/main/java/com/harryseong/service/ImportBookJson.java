@@ -8,19 +8,23 @@ import org.apache.commons.io.IOUtils;
 import org.json.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Service;
 
 import java.io.IOException;
 import java.net.URL;
 import java.nio.charset.Charset;
 
 /**
- * Created by harry on 4/17/17.
+ * Created by harry on 4/17/17. Searches for book on Google API, imports and parses the book JSON, creates Book object,
+ * then returns Book object.
  */
-public class ParseBookJson {
+
+@Service
+public class ImportBookJson {
 
     private static final Logger log = LoggerFactory.getLogger(HarrySeongApp.class);
 
-    public Book parseBookJson(Book book, String isbn13) throws IOException {
+    public Book importBookJson(Book book, String isbn13) throws IOException {
 
         JSONObject bookJsonObject = new JSONObject(IOUtils.toString(new URL("https://www.googleapis.com/books/v1/volumes?q=isbn:"+isbn13), Charset.forName("UTF-8")));
         String bookJsonString = bookJsonObject.toString();

@@ -1,9 +1,12 @@
 package com.harryseong.web;
 
+import com.harryseong.domain.Book;
 import com.harryseong.repository.BookRepository;
+import com.harryseong.service.ImportBookJson;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -15,29 +18,28 @@ import org.springframework.web.bind.annotation.RequestParam;
 public class WebController {
     @Autowired
     private BookRepository bookRepository;
-
-    @RequestMapping("/")
+    @GetMapping("/")
     public String index(@RequestParam(value = "name", required = false, defaultValue = "World") String name, Model model)
     {
         model.addAttribute("name", name);
         return "index";
     }
-    @RequestMapping("/places")
+    @GetMapping("/places")
     public String places()
     {
         return "places";
     }
-    @RequestMapping("/family")
+    @GetMapping("/family")
     public String family()
     {
         return "family";
     }
-    @RequestMapping("/music")
+    @GetMapping("/music")
     public String music()
     {
         return "music";
     }
-    @RequestMapping("/technology")
+    @GetMapping("/technology")
     public String technology()
     {
         return "technology";

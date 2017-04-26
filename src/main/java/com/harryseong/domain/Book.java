@@ -1,6 +1,8 @@
 package com.harryseong.domain;
 
+import com.harryseong.constraints.ISBN;
 import javax.persistence.*;
+import javax.validation.constraints.Size;
 
 /**
  * Created by harry on 2/24/17.
@@ -17,6 +19,8 @@ public class Book {
     @Column(length = 5000)
     private String description;
     private int pageCount;
+    @ISBN
+    @Size(min=13, max=13)
     private String isbn13;
     private boolean readStatus;
     private String coverImageURL;
@@ -46,7 +50,9 @@ public class Book {
     }
     public void setPageCount(int pageCount){ this.pageCount = pageCount; }
     public void setIsbn13(String isbn13){
-        this.isbn13=isbn13;
+        String isbn13Unclean=isbn13;
+        String isbn13Clean=isbn13Unclean.replaceAll("[^0-9]","");
+        this.isbn13=isbn13Clean;
     }
     public void setReadStatus(boolean readStatus){
         this.readStatus=readStatus;
@@ -54,9 +60,7 @@ public class Book {
     public void setCoverImageURL(String coverImageURL) { this.coverImageURL=coverImageURL; }
 
     // Getters
-    public String getBookID(){
-        return String.format(String.valueOf(bookID));
-    }
+    public Long getBookID(){ return bookID;}
     public String getTitle(){
         return title;
     }
@@ -77,7 +81,7 @@ public class Book {
 
     @Override
     public String toString() {
-        return String.format("["+getBookID()+", "+getTitle()+", "
+        return String.format("["+String.format(String.valueOf(getBookID()))+", "+getTitle()+", "
                 +getAuthorName()+", "+ getPageCount()+", "+getIsbn13()+", "+getReadStatus()+", "+getCoverImageURL()+", "+getDescription()+"]");
     }
 }

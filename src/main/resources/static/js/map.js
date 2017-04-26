@@ -26,35 +26,41 @@ flyButton.addEventListener('click', function () {
         fly.innerHTML = "FLY TO 6TH-8TH GRADE";
         cityName.innerHTML = "College Station, TX";
         cityYears.innerHTML = "[1997-2002]";
-        cityDescription.innerHTML = "This is where Harry went to elementary school.";
+        cityDescription.innerHTML = "This town was my first exposure to the United States. " +
+            "Here, I attended Rock Prairie Elementary School and learned English.";
     }
     else if (fly.innerHTML == "FLY TO 6TH-8TH GRADE"){
         map.flyTo({center: westLafayette, zoom: 10});
         fly.innerHTML = "FLY TO 8TH-12TH GRADE";
         cityName.innerHTML = "West Lafayette, IN";
         cityYears.innerHTML = "[2002-2004]";
-        cityDescription.innerHTML = "This is where Harry went to middle school.";
+        cityDescription.innerHTML = "This was where I went to middle school at West Lafayette " +
+            "Junior/Senior High School.";
     }
     else if (fly.innerHTML == "FLY TO 8TH-12TH GRADE"){
         map.flyTo({center: edenPrairie, zoom: 10});
-        fly.innerHTML = "FLY TO COLLEGE";
+        fly.innerHTML = "FLY TO COLLEGE/WORK";
         cityName.innerHTML = "Eden Prairie, MN";
         cityYears.innerHTML = "[2004-2009]";
-        cityDescription.innerHTML = "This is where Harry went to high school.";
+        cityDescription.innerHTML = "This is where I attended high school at Eden Prairie High School. " +
+            "Though I moved around a couple times, I tell people that I am from Minnesota because I spent " +
+            "my high school days here. My parents have since moved to Monticello, Minnesota to start their " +
+            "mushroom farm business.";
     }
-    else if (fly.innerHTML == "FLY TO COLLEGE"){
+    else if (fly.innerHTML == "FLY TO COLLEGE/WORK"){
         map.flyTo({center: evanston, zoom: 10});
         fly.innerHTML = "FLY TO HOMETOWN";
         cityName.innerHTML = "Evanston, IL";
-        cityYears.innerHTML = "[2009-2013]";
-        cityDescription.innerHTML = "This is where Harry went to college.";
+        cityYears.innerHTML = "[2009-present]";
+        cityDescription.innerHTML = "This is where I attended Northwestern University. Upon graduation " +
+            "with a Bachelors, I started work at Student Affairs IT at Northwestern University.";
     }
     else if (fly.innerHTML == "FLY TO HOMETOWN"){
         map.flyTo({center: seoul, zoom: 10});
         fly.innerHTML = "FLY TO 1ST-6TH GRADE";
         cityName.innerHTML = "Seoul, South Korea";
         cityYears.innerHTML = "[1997-2002]";
-        cityDescription.innerHTML = "This was where Harry was born.";
+        cityDescription.innerHTML = "This was where I was born.";
     }
 
     // Fly to a random location by offsetting the Chicago point

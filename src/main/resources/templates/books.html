@@ -4,9 +4,9 @@
 <head>
     <meta charset="UTF-8"/>
     <link th:href="@{/css/main.css}" type="text/css" rel="stylesheet"/>
+    <link th:href="@{/css/toggle.css}" type="text/css" rel="stylesheet"/>
     <link th:href="@{https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css}" type="text/css" rel="stylesheet"/>
 
-    <script th:src="@{/js/main.js}"></script>
     <script th:src="@{https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js}"></script>
     <script th:src="@{https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js}"></script>
 
@@ -26,7 +26,7 @@
 <div class="content">
 
     <div class="addBookModal">
-        <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Add Book</button>
+        <button type="button" class="btn btn-default btn-sm" data-toggle="modal" data-target="#myModal">Add Book</button>
         <div class="modal fade" id="myModal" role="dialog">
             <div class="modal-dialog">
                 <div class="modal-content">
@@ -36,15 +36,21 @@
                     </div>
                     <div class="modal-body">
 
-                        <form action="#" th:action="@{/books/add}" th:object="${book}" method="post">
-                            <p>ISBN-13 #: <input type="text" th:field="*{isbn13}"/></p>
-                            <!--<p>Read Status: <input type="text" th:field="*{readStatus}"/></p>-->
-                            <p><input type="submit" value="Add Book"/> <input type="reset" value="Reset"/></p>
+                        <form id="add-book-form" action="#" th:action="@{/books/add}" th:object="${book}" method="post">
+                            <p>ISBN # <input id="isbn13" type="text" placeholder="Enter ISBN number" th:field="*{isbn13}"/></p>
+                            <p>Read Status:
+                                <p><input id="readStatusTrue" th:type="radio" th:name="readStatus" th:value="1" th:checked="true"/>Read</p>
+                                <p><input id="readStatusFalse" th:type="radio" th:name="readStatus" th:value="0"/>Unread</p>
+                            </p>
+                            <p>
+                                <input id="submit-button" class="btn btn-default btn-sm" type="submit" value="Add Book"/>
+                                <input id="reset-button" class="btn btn-default btn-sm" type="reset" value="Clear"/>
+                            </p>
                         </form>
 
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                        <button type="button" class="btn btn-default btn-sm" data-dismiss="modal">Cancel</button>
                     </div>
                 </div>
             </div>
@@ -62,6 +68,7 @@
             <th>Pages</th>
             <th>ISBN13</th>
             <th>Read Status</th>
+            <th>Delete</th>
         </tr>
         </thead>
         <tbody>
@@ -74,17 +81,39 @@
             <td th:text="${book.pageCount}"></td>
             <td th:text="${book.isbn13}"></td>
             <td>
-                <span th:if="${book.readStatus}== 'true'"><img th:src="@{/img/checkmark-flat/32x32.png}" height="16" width="16"/></span>
-                <span th:if="${book.readStatus}== 'false'"><img th:src="@{/img/checkmark-flat/32x32gray.png}" height="16" width="16"/></span>
+
+                <span th:if="${book.readStatus}=='true'">
+                    <form action="#" th:action="@{/books/updateReadStatus}" method="post">
+                        <input type="hidden" th:name="bookID" th:value="${book.bookID}"/>
+                        <input type="hidden" th:name="readStatus" th:value="0"/>
+                        <input type="image" th:name="submit" th:value="submit" th:src="@{/img/checkmark-flat/32x32.png}" height="16" width="16"/>
+                    </form>
+                </span>
+                <span th:if="${book.readStatus}=='false'">
+                    <form action="#" th:action="@{/books/updateReadStatus}" method="post">
+                        <input type="hidden" th:name="bookID" th:value="${book.bookID}"/>
+                        <input type="hidden" th:name="readStatus" th:value="1"/>
+                        <input type="image" th:name="submit" th:value="submit" th:src="@{/img/checkmark-flat/32x32gray.png}" height="16" width="16"/>
+                    </form>
+                </span>
+            </td>
+            <td>
+                <form id="delete-book-form" action="#" th:action="@{/books/delete}" method="post">
+                    <input id="delete-book-id" type="hidden" th:name="bookID" th:value="${book.bookID}"/>
+                    <button id="delete-book-button" class="btn btn-default btn-xs" type="submit">Delete</button>
+                </form>
             </td>
         </tr>
         </tbody>
     </table>
+
 </div>
 
 <div id="footer">
     <p>harryseong.com</p>
 </div>
+
+<script th:src="@{/js/main.js}"></script>
 
 </body>
 </html>

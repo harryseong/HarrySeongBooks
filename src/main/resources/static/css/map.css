@@ -43,10 +43,13 @@
     cursor: pointer;
 }
 
-.infoBoxHead #cityYears {
-    font-size: 3.0rem;
+.infoBoxBody #cityYears {
+    font-size: 2.0rem;
+    font-weight: 600;
+    letter-spacing: .3rem;
+    color: #232323;
 }
 
-.infoBoxHead #cityDescription {
+.infoBoxBody #cityDescription {
     font-size: 1.5rem;
 }

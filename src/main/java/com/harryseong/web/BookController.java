@@ -1,13 +1,14 @@
 package com.harryseong.web;
 
+import com.harryseong.HarrySeongApp;
 import com.harryseong.repository.BookRepository;
-import com.harryseong.service.BookDBImport;
+import com.harryseong.service.ImportBookJson;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-
-
 import com.harryseong.domain.Book;
 
 import java.io.IOException;
@@ -17,15 +18,17 @@ import java.io.IOException;
  */
 
 @Controller
-public class BookController {
+public class BookController{
+
+    private static final Logger log = LoggerFactory.getLogger(HarrySeongApp.class);
+
     @Autowired
     private BookRepository bookRepository;
     @Autowired
-    private BookDBImport bookDBImport;
+    private ImportBookJson importBookJson;
 
-
-    @RequestMapping("books")
-    public String books(Model model)
+    @GetMapping("books")
+    public String Books(Model model)
     {
         // This model necessary for displaying all books in books template table.
         model.addAttribute("books", bookRepository.findAll());
@@ -34,21 +37,44 @@ public class BookController {
     }
 
     @PostMapping("books/add")
-    public String bookSubmit(@ModelAttribute Book book) {
+    public String addBook(@ModelAttribute Book book) {
         try {
-            book=bookDBImport.parseBookJson(book, "9780399588174");
+            book=importBookJson.importBookJson(book, book.getIsbn13());
+            bookRepository.save(book);
         } catch(IOException e)
         {
             e.printStackTrace();
         }
-        bookRepository.save(book);
-        // Do a redirect to "books"
         return "redirect:/books";
     }
 
+    @PostMapping ("books/delete")
+    public String deleteBook(@RequestParam Long bookID) {
+        Book book = bookRepository.findByBookID(bookID);
+        bookRepository.delete(book);
+        log.info("[BookID: "+ bookID +"] has been deleted.");
+        return "redirect:/books";
+    }
+
+    @PostMapping ("books/updateReadStatus")
+    public String updateReadStatus(@RequestParam Long bookID, @RequestParam boolean readStatus){
+        Book book = bookRepository.findByBookID(bookID);
+        book.setReadStatus(readStatus);
+        bookRepository.save(book);
+        log.info("[BookID: "+ bookID +"] 'Read Status' has been updated.");
+        return "redirect:/books";
+    }
+    
     @GetMapping("books/all")
     @ResponseBody
     public Iterable<Book> getAllBooks(){
         return bookRepository.findAll();
     }
+
+    @GetMapping("books/one")
+    @ResponseBody
+    public Book getOneBook(@RequestParam Long bookID){
+        return bookRepository.findByBookID(bookID);
+    }
+
 }
